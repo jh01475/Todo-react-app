@@ -10,7 +10,6 @@ class AddTodo extends React.Component {
     const thisItem = this.state.item;
     thisItem.title = e.target.value;
     this.setState({ item: thisItem });
-    console.log(thisItem);
   };
   onButtonClick = () => {
     this.add(this.state.item);
@@ -27,7 +26,7 @@ class AddTodo extends React.Component {
         <Grid container>
           <Grid xs={11} md={11} item style={{ paddingRight: 16 }}>
             <TextField
-              placehoder="Add Todo here"
+              placeholder="Add Todo here"
               fullWidth
               onChange={this.onInputChange}
               value={this.state.item.title}
