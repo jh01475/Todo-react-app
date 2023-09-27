@@ -23,6 +23,7 @@ class App extends React.Component {
     call("/todo", "DELETE", item).then((response) =>
       this.setState({ items: response.data })
     );
+    
   };
   update = (item) => {
     call("/todo", "PUT", item).then((response) =>
@@ -34,6 +35,12 @@ class App extends React.Component {
       this.setState({ items: response.data })
     );
   }
+  select(){
+    call("/todo", "GET", null).then((response) =>
+      this.setState({ items: response.data })
+    );
+    console.log("select");
+  }
   render() {
     // todoItems에 this.state.items.length 가 0보다 크다면 true 이므로 && 뒤에 값을 넘겨준다.
     // totoItem = this.state.items.length > 0 ? (<Paper></Paper>):""; 이렇게 해도 같은 결과이다. 조건선택문 ? ternary operator
@@ -41,7 +48,7 @@ class App extends React.Component {
       <Paper style={{ margin: 16 }}>
         <List>
           {this.state.items.map((item, idx) => (
-            <Todo item={item} key={item.id} delete={this.delete} update={this.update}/>
+            <Todo item={item} key={item.id} delete={this.delete} update={this.update} select={this.select}/>
           ))}
         </List>
       </Paper>
