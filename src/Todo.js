@@ -14,11 +14,9 @@ class Todo extends React.Component {
     this.state = { item: props.item, readOnly: true }; // 매개변수 item 의 변수/값을 item에 대입
     this.delete = props.delete;
     this.update = props.update;
-    this.select = props.select;
   }
   deleteEventHandler = () => {
     this.delete(this.state.item);
-    this.select();
   };
   offReadOnlyMode = () => {
     console.log("Event!", this.state.readOnly);
