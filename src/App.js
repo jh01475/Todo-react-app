@@ -40,7 +40,20 @@ function App(){
       setLoading(false);
     });
   }, []);
-
+  //완료 모두 삭제
+  const handleDeleteAll = () => {
+    if (items.length > 0) {
+      
+      items.map((item, idx) => {
+        console.log(item.done);
+        if(item.done === true)
+        {
+          deleteTodo(item);
+        }
+        return "deleteAll"
+      });
+    }
+  }
   var todoItems = items.length > 0 && (
       <Paper style={{ margin: 16 }}>
         <List>
@@ -81,6 +94,15 @@ function App(){
         <AddTodo add={add} />
         <div className="TodoList">{todoItems}</div>
       </Container>
+      {items.length > 0 && (
+        <Button onClick={handleDeleteAll} 
+            variant="contained" 
+            color="success"
+            size="medium"
+            style={{ marginLeft: '16px' }}>
+          완료한 항목 삭제
+        </Button>
+      )}
     </div>
   );
     //loading 중일 때
