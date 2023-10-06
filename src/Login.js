@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { signin } from "./service/ApiService";
 import {
   Button,
@@ -7,8 +7,22 @@ import {
   Link,
   Container,
   Typography,
+  Checkbox,
 } from "@material-ui/core";
 function Login() {
+  const [passwordType, setPasswordType] = useState({
+    type: "password",
+    visible: false,
+  });
+  const handlePasswordType = (e) => {
+    setPasswordType(() => {
+      if (!passwordType.visible) {
+        return { type: "text", visible: true };
+      }
+      return { type: "password", visible: false };
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
@@ -42,6 +56,7 @@ function Login() {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              type={passwordType.type}
               variant="outlined"
               required
               fullWidth
@@ -50,6 +65,10 @@ function Login() {
               name="password"
               autoComplete="password"
             />
+          </Grid>
+          <Grid>
+            비밀번호 보기
+            <Checkbox onChange={handlePasswordType} />
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" fullWidth variant="contained" color="primary">

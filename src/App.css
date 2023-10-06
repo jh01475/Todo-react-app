@@ -1,3 +1,16 @@
+.upbar{
+  display:flex;
+  margin-top: 20px;
+}
+.left {
+  width: 10%;
+}
+.space{
+  width: 70%;
+}
+.right{
+  width: 20%;
+}
 .App {
   text-align: center;
 }
